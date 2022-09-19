@@ -1,12 +1,13 @@
 # IXD617_202290_01
 IXD 617 Advanced Tech: Mobile Web
 
-## Hamilton Cline
+## Rachel Yoon
 
 ### Important Links
-- https://hdraws.com/aau/IXD617
-- https://github.com/bronkula/IXD617_202290_01
+- https://rachellys.design/aau/IXD617
+- https://github.com/lovelyring7/IXD617_202290_01
+
 
 ### Assignment Links
-- https://hdraws.com/aau/IXD617/profile/
-- https://hdraws.com/aau/IXD617/csszengarden/
+- https://rachellys.design/aau/IXD617/profile/
+- https://rachellys.design/aau/IXD617/csszengarden/
