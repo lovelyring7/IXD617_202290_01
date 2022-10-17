@@ -11,3 +11,5 @@ IXD 617 Advanced Tech: Mobile Web
 ### Assignment Links
 - https://rachellys.design/aau/IXD617/profile/
 - https://rachellys.design/aau/IXD617/csszengarden/
+- https://rachellys.design/aau/IXD617/
+- https://rachellys.design/aau/IXD617/#recent-page
