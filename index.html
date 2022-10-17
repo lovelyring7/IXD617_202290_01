@@ -4,9 +4,129 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index</title>
+    <title>Starbuckseekers</title>
+
+   <!-- <link rel="stylesheet" href="lib/css/jquery.mobile.structure-1.4.5.min.css"> -->
+   <link rel="stylesheet" href="src/css/app.css">
+
+    <script src="lib/js/jquery-2.2.4.min.js"></script>    
+    <script src="src/js/app.js"></script>
+    <script src="src/js/signin.js"></script>
+    <script src="lib/js/jquery.mobile-1.4.5.min.js"></script>
 </head>
 <body>
-    <h1>Soon there will be code</h1>
+    <section data-role="page" id="signin-page">
+        <div data-role="main" class="display-flex flex-column">
+            <div class="flex-stretch signin-hero">
+                <img src="images/icon/dice.svg" alt="" class="hero-icon">
+            </div> 
+            <form class="form" id="signin-form" data-ajax="false">
+                <div class="warning"></div>
+                <div class="form-control">
+                    <lable class="form-label" for="signin-username">Username</lable>
+                    <input class="form-input" type="text" id="signin-username" data-role="none" placeholder="Type your Username">
+                </div>
+                <div class="form-control">
+                    <lable class="form-label" for="signin-password">Password</lable>
+                    <input class="form-input" type="password" id="signin-password" data-role="none" placeholder="Type your Password">
+                </div>
+                <div class="form-control">
+                    <input type="submit" class="form-button" value="Click me" data-role="none">
+                </div>
+                <div class="form-control" style="text-align:center; font-size:0.7em">
+                    Dont' have an account? <a href="#signup-page">Sign Up!</a>
+                </div>
+            </form>
+            <div class="flex-stretch"></div>
+        </div>
+    </section>
+
+    <section data-role="page" id="signup-page">
+        <div data-role="main" class="display-flex flex-column flex-justify-center">
+            <form class="form" id="signup-form" data-ajax="false">
+                <div class="form-control">
+                    <lable class="form-label" for="signup-username">Username</lable>
+                    <input class="form-input" type="text" id="signup-username" data-role="none" placeholder="Type your Username">
+                </div>
+                <div class="form-control">
+                    <lable class="form-label" for="signup-password">Password</lable>
+                    <input class="form-input" type="password" id="signup-password" data-role="none" placeholder="Type your Password">
+                </div>
+                <div class="form-control">
+                    <lable class="form-label" for="signup-confirm">Confirm Password</lable>
+                    <input class="form-input" type="password" id="signup-confirm" data-role="none" placeholder="Type your Password">
+                </div>
+                <div class="form-control">
+                    <input type="submit" class="form-button" value="Click me" data-role="none">
+                </div>
+                <div class="form-control">
+                    Already have an account? <a href="#signin-page">Sign In</a>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- RECENT PAGE-->
+    <section data-role="page" id="recent-page">
+        <div data-role="main">
+            <div class="map"></div>
+        </div>
+        <footer data-role="footer">
+            <ul>
+                <li><a href="#recent-page">Recent</a></li>
+                <li><a href="#list-page">List</a></li>
+                <li><a href="#user-profile-page">Profile</a></li>
+            </ul>
+        </footer>
+    </section>
+
+     <!-- LIST PAGE-->
+     <section data-role="page" id="list-page">
+        <header data-role="header">
+            <h1>Animal List</h1>
+        </header>
+        <div data-role="main">
+            <div class="animallist">
+                <div class="animallist-item"><a href="#animal-profile">Animal 1</a></div>
+                <div class="animallist-item"><a href="#animal-profile">Animal 2</a></div>
+                <div class="animallist-item"><a href="#animal-profile">Animal 3</a></div>
+                <div class="animallist-item"><a href="#animal-profile">Animal 4</a></div>
+                <div class="animallist-item"><a href="#animal-profile">Animal 5</a></div>
+                <div class="animallist-item"><a href="#animal-profile">Animal 6</a></div>
+                <div class="animallist-item"><a href="#animal-profile">Animal 7</a></div>
+                <div class="animallist-item"><a href="#animal-profile">Animal 8</a></div>
+                <div class="animallist-item"><a href="#animal-profile">Animal 9</a></div>
+                <div class="animallist-item"><a href="#animal-profile">Animal 10</a></div> 
+            </div>
+            <div class="floater bottom right">
+                <a href="#" class="btn-circle">&plus;</a>
+            </div>
+           <!-- div.animallist-item*10>a[href="#animal-profile"]>{Animal $}-->
+        </div>
+        <footer data-role="footer">
+            <ul>
+                <li><a href="#recent-page">Recent</a></li>
+                <li><a href="#list-page">List</a></li>
+                <li><a href="#user-profile-page">Profile</a></li>
+            </ul>
+        </footer>
+    </section>
+
+     <!-- USER PROFILE PAGE-->
+     <section data-role="page" id="user-profile-page">
+        <div data-role="main">
+            <h1>User Profile</h1>
+            <div>
+                <a href="#" class="js-logout">Logout</a>
+            </div>
+        </div>
+        <footer data-role="footer">
+            <ul>
+                <li><a href="#recent-page">Recent</a></li>
+                <li><a href="#list-page">List</a></li>
+                <li><a href="#user-profile-page">Profile</a></li>
+            </ul>
+        </footer>
+    </section>
 </body>
 </html>
