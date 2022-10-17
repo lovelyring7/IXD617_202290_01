@@ -9,21 +9,20 @@
 
     --header-height: 3rem;
 
-    --color-main-rgb: 101,186,183;
-    --color-main-hue: 178;
-    --color-main-light: hsl(var(--color-main-hue),52%, 77%);
-    --color-main-medium: hsl(var(--color-main-hue),38%, 56%);
-    --color-main-dark: hsl(var(--color-main-hue),57%, 27%);
 
-    --color-neutral-lighter: rgb(234,238,236);
-    --color-neutral-light: rgb(194,202,198);
-    --color-neutral-medium:rgb(111,121,116) ;
-    --color-neutral-dark: rgb(24,29,27);
+    --color-main-white: white;
+    --color-main-dark1: #151515;
+    --color-main-dark2: #4b4b4b;
+
+    --color-green-lighter: #00754A;
+    --color-green-light: #00643C;
+    --color-green-dark: ##1E3931;
 }
 
 body{
     margin:0;
     font-family:var(--font-body);
+    background-color:var(--color-green-light);
 }
 
 a {
@@ -123,7 +122,7 @@ a {
 }
 .form-label{
     font-size:0.8em;
-    color:var(--color-neutral-medium);
+    color:var(--color-main-white);
     display: block;
     margin-bottom:0.5em;
 }
@@ -132,6 +131,7 @@ a {
     background-color:transparent;
     border-width:1px;
     border-color:var(--color-neutral-light);
+    background-color:var(--color--white);
     border-style:solid;
     border-radius: 0.2em;
     padding:0.5em 1em;
@@ -170,8 +170,7 @@ a {
 }
 
 .hero-icon{
-    width:80vw;
-    aspect-ratio:1 / 1;
+    width:80%;
 
 }
 
@@ -203,6 +202,8 @@ a {
     height:3rem;
     text-align:center;
     background-color:white;
+    display:block;
+
 }
 
 
