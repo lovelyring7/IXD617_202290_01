@@ -13,3 +13,4 @@ IXD 617 Advanced Tech: Mobile Web
 - https://rachellys.design/aau/IXD617/csszengarden/
 - https://rachellys.design/aau/IXD617/
 - https://rachellys.design/aau/IXD617/#recent-page
+- https://rachellys.design/aau/IXD617/data/generator.html
