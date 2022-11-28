@@ -10,9 +10,17 @@
    <link rel="stylesheet" href="src/css/app.css">
 
     <script src="lib/js/jquery-2.2.4.min.js"></script>    
-    <script src="src/js/app.js"></script>
-    <script src="src/js/signin.js"></script>
+    <script src="src/js/app.js" type="module"></script>
     <script src="lib/js/jquery.mobile-1.4.5.min.js"></script>
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg"
+      defer
+    ></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter&family=Manrope:wght@400;500&display=swap');
+    </style>
+</head>
 <body>
     <section data-role="page" id="signin-page">
         <div data-role="main" class="display-flex flex-column">
@@ -30,7 +38,7 @@
                     <input class="form-input" type="password" id="signin-password" data-role="none" placeholder="Type your Password">
                 </div>
                 <div class="form-control">
-                    <input type="submit" class="form-button" value="Click me" data-role="none">
+                    <input type="submit" class="form-button" value="Sign In" data-role="none">
                 </div>
                 <div class="form-control" style="text-align:center; font-size:0.7em">
                     Dont' have an account? <a href="#signup-page">Sign Up!</a>
@@ -56,7 +64,7 @@
                     <input class="form-input" type="password" id="signup-confirm" data-role="none" placeholder="Type your Password">
                 </div>
                 <div class="form-control">
-                    <input type="submit" class="form-button" value="Sign In" data-role="none">
+                    <input type="submit" class="form-button" value="Click me" data-role="none">
                 </div>
                 <div class="form-control">
                     Already have an account? <a href="#signin-page">Sign In</a>
@@ -69,63 +77,208 @@
     <section data-role="page" id="recent-page">
         <div data-role="main">
             <div class="map"></div>
+<!--
+            <div class="floater top left">
+                <a href="#" class="btn-circle" data-activate="#recent-add-modal">☰</a>
+            </div>
+
+            <div id="recent-add-modal" class="modal">
+                <div class="modal-back transparent" data-deactivate="#recent-add-modal"></div>
+                <div class="modal-drawer left">
+                    <div class="modal-head">Head</div>
+                    <div class="modal-body">Body</div>
+                </div>
+            </div>
+        -->
+            <div class="floater bottom right">
+                <a href="#" class="btn-circle" data-activate="#list-add-modal">&plus;</a>
+            </div>
         </div>
         <footer data-role="footer">
             <ul>
-                <li><a href="#recent-page">Recent</a></li>
-                <li><a href="#list-page">List</a></li>
-                <li><a href="#user-profile-page">Profile</a></li>
+                <li><a href="#recent-page">
+                   <span class="footer-icon"><img class="icon" src="images/icons/explore_1.svg"></span>
+                   <span class="footer-label"> Explore</span>
+                </a></li>
+                <li><a href="#list-page">
+                    <span class="footer-icon"><img class="icon" src="images/icons/list_2.svg"></span>
+                    <span class="footer-label">List</span>
+                </a></li>
+                <li><a href="#user-profile-page">
+                    <span class="footer-icon"><img class="icon" src="images/icons/profile_2.svg"></span>
+                    <span class="footer-label">Profile</span>
+                </a></li>
             </ul>
         </footer>
+
+        <div id="list-add-modal" class="modal">
+            <div class="modal-back transparent" data-deactivate="#list-add-modal"></div>
+            <div class="modal-popup">
+                <div class="modal-head">
+                    <div class="grabber"></div>
+                </div>
+                <div class="modal-body">
+                    <div class="top-w-d">
+                        <h3>
+                            Available items within
+                        </h3>
+                        <p class="description">
+                            Select an item to view the description.
+                        </p>
+                    </div>
+                    <div class="category">
+                        <div class="display-flex flex-wrap category">
+                            <div class="flex-stretch display-flex filter">
+                            
+                                <div class="flex-none">
+                                    <button data-filter="category" data-value="" type="button" class="button-category button-selected">
+                                        All
+                                        <div class="category_bar"></div>
+                                    </button>
+                                </div>
+                                <div class="flex-none">
+                                    <button data-filter="category" data-value="Cold_cups" type="button" class="button-category">Cold cups</button>
+                                </div>
+                                <div class="flex-none">
+                                    <button data-filter="category" data-value="Tumblers" type="button" class="button-category">Tumblers</button>
+                                </div>
+                                <div class="flex-none">
+                                    <button data-filter="category" data-value="Mugs" type="button" class="button-category">Mugs</button>
+                                </div>
+                                <div class="flex-none">
+                                    <button data-filter="category" data-value="Water_bottles" type="button" class="button-category">Water bottles</button>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-foot">Foot</div>
+            </div>
+        </div>
     </section>
 
      <!-- LIST PAGE-->
      <section data-role="page" id="list-page">
+<!--
         <header data-role="header">
             <h1>Animal List</h1>
         </header>
+    -->
         <div data-role="main">
+            <div class="main-header display-flex">
+                <div class="flex-none">
+                    <span>0</span> items
+                </div>
+                <div class="flex-stretch"></div>
+               <div class="flex-none"><img src="images/icons/add.svg"></div>
+            </div>
             <div class="animallist">
-                <div class="animallist-item"><a href="#animal-profile">Animal 1</a></div>
-                <div class="animallist-item"><a href="#animal-profile">Animal 2</a></div>
-                <div class="animallist-item"><a href="#animal-profile">Animal 3</a></div>
-                <div class="animallist-item"><a href="#animal-profile">Animal 4</a></div>
-                <div class="animallist-item"><a href="#animal-profile">Animal 5</a></div>
-                <div class="animallist-item"><a href="#animal-profile">Animal 6</a></div>
-                <div class="animallist-item"><a href="#animal-profile">Animal 7</a></div>
-                <div class="animallist-item"><a href="#animal-profile">Animal 8</a></div>
-                <div class="animallist-item"><a href="#animal-profile">Animal 9</a></div>
-                <div class="animallist-item"><a href="#animal-profile">Animal 10</a></div> 
+                <div class="display-flex flex-wrap category">
+                    <div class="flex-stretch display-flex filter">
+                    
+                        <div class="flex-none">
+                            <button data-filter="category" data-value="" type="button" class="button-category button-selected">
+                                All
+                                <div class="category_bar"></div>
+                            </button>
+                        </div>
+                        <div class="flex-none">
+                            <button data-filter="category" data-value="Cold_cups" type="button" class="button-category">Cold cups</button>
+                        </div>
+                        <div class="flex-none">
+                            <button data-filter="category" data-value="Tumblers" type="button" class="button-category">Tumblers</button>
+                        </div>
+                        <div class="flex-none">
+                            <button data-filter="category" data-value="Mugs" type="button" class="button-category">Mugs</button>
+                        </div>
+                        <div class="flex-none">
+                            <button data-filter="category" data-value="Water_bottles" type="button" class="button-category">Water bottles</button>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div>
+                     
+                </div>
             </div>
-            <div class="floater bottom right">
-                <a href="#" class="btn-circle">&plus;</a>
-            </div>
+
            <!-- div.animallist-item*10>a[href="#animal-profile"]>{Animal $}-->
         </div>
         <footer data-role="footer">
             <ul>
-                <li><a href="#recent-page">Recent</a></li>
-                <li><a href="#list-page">List</a></li>
-                <li><a href="#user-profile-page">Profile</a></li>
+                <li><a href="#recent-page">
+                   <span class="footer-icon"><img class="icon" src="images/icons/explore_2.svg"></span>
+                   <span class="footer-label">Explore</span>
+                </a></li>
+                <li><a href="#list-page">
+                    <span class="footer-icon"><img class="icon" src="images/icons/list_1.svg"></span>
+                    <span class="footer-label">List</span>
+                </a></li>
+                <li><a href="#user-profile-page">
+                    <span class="footer-icon"><img class="icon" src="images/icons/profile_2.svg"></span>
+                    <span class="footer-label">Profile</span>
+                </a></li>
             </ul>
         </footer>
+
+        
     </section>
 
      <!-- USER PROFILE PAGE-->
      <section data-role="page" id="user-profile-page">
         <div data-role="main">
+
+            <!--
             <h1>User Profile</h1>
             <div>
                 <a href="#" class="js-logout">Logout</a>
             </div>
+
+        -->
         </div>
         <footer data-role="footer">
             <ul>
-                <li><a href="#recent-page">Recent</a></li>
-                <li><a href="#list-page">List</a></li>
-                <li><a href="#user-profile-page">Profile</a></li>
+                <li><a href="#recent-page">
+                   <span class="footer-icon"><img class="icon" src="images/icons/explore_2.svg"></span>
+                   <span class="footer-label">Explore</span>
+                </a></li>
+                <li><a href="#list-page">
+                    <span class="footer-icon"><img class="icon" src="images/icons/list_2.svg"></span>
+                    <span class="footer-label">List</span>
+                </a></li>
+                <li><a href="#user-profile-page">
+                    <span class="footer-icon"><img class="icon" src="images/icons/profile_1.svg"></span>
+                    <span class="footer-label">Profile</span>
+                </a></li>
             </ul>
         </footer>
+    </section>
+
+    <!--ANIMAL PROFILE PAGE-->
+    <section data-role="page" id="animal-profile-page">
+        <header data-role="header">
+            <h1></h1>
+            <ul>
+               <li><a href="#" data-rel="back">Back</a></li> 
+               <li class="flex-stretch"></li> 
+               <li><a href="#animal-edit-page">Edit</a></li> 
+            </ul>
+        </header>
+        <div data-role="main">
+            <div class="animal-profile-top"></div> 
+            <div class="animal-profile-nav">
+                <div class="nav-link active">Map</div>
+                <div class="nav-link">Description</div>
+            </div>            
+            <div class="animal-profile-bottom">
+                <div class="animal-profile-section section-map active">
+                    <div class="map"></div>
+                </div>
+                <div class="animal-profile-section description"></div>
+            </div>            
+        </div>
+
     </section>
 </body>
 </html>
