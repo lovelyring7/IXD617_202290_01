@@ -96,5 +96,11 @@ export const ChooseLocationPage = async() => {
 }
 
 export const UserEditPage = async() => {
-    
+    let {result:users} = await query({
+        type:"user_by_id",
+        params:[sessionStorage.userId]
+    });
+    let [user] = users;
+
+    $("#user-profile-page .body").html(makeUserProfilePage(user))
 }
