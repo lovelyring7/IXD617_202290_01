@@ -1,4 +1,4 @@
-import { AnimalProfilePage, ListPage, RecentPage, UserProfilePage } from "./routes.js";
+import { AnimalProfilePage, ChooseLocationPage, ListPage, RecentPage, UserProfilePage } from "./routes.js";
 import { checkSigninForm, checkUserId } from "./signin.js";
 
 
@@ -28,6 +28,10 @@ $(() => {
             break;
             case "animal-profile-page": AnimalProfilePage();
             break;
+            case "choose-location-page": ChooseLocationPage();
+            break;
+            case "user-edit-page" : UserEditPage();
+            break;
         }
     })
 
@@ -46,7 +50,7 @@ $(() => {
     .on("click", ".animal-jump", function(e){
         let id = $(this).data("id");
 
-        sessionStorage.aninamlId = id;
+        sessionStorage.animalId = id;
     })
 
     .on("click", ".location-jump", function(e){
@@ -57,6 +61,7 @@ $(() => {
 
 
     .on("click", ".nav-link", function(e){
+        if (e.cancelable) e.preventDefault();
         let id = $(this).index();
         $(this).parent().next().children().eq(id)
             .addClass("active")
