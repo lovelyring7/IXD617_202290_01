@@ -5,9 +5,10 @@ const getdate = (d1,d2) => dayjs(new Date(chance.natural({min:d1, max:d2}))).for
 
 const animaltype = (type) => {
     let types = {
-        'dog': ['poodle','pug','pitbull'], 
-        'cat': ['calico','ginger','siamese','fat','stray'],
-                'horse': ['black','brown','unicorn'] 
+        'Cold cups': ['Tinted Bling Plastic Cold Cup','Sangria Bling Plastic Cold Cup','Iridescent Plastic Cold Cup'], 
+        'Tumblers': ['Ice Stainless-Steel Tumbler','Siren Logo Plastic Hot Cup','siamese','Iridescent Stainless-Steel Tumbler','Ice Shine Stainless-Steel Tumbler'],
+        'Mugs': ['Blue Ombré Ceramic Mug','Starbucks Black Speckled Ceramic Mug','Concrete Ceramic Mug with Lid'],
+        'Water bottles': ['Recycled Glass Water Bottle','Christmas Snow Glass Vacuum Water Bottle','Gold Ombre Striped Vacuum Insulated Stainless Steel Water Bottle']
     }
     return chance.pickone(types[type]);
 }
@@ -28,9 +29,8 @@ const getAnimals = () => (new Array(50)).fill(0).map((o,i)=>{
     o= {};
     o.id = i + 1;
     o.user_id = chance.natural({min:1, max:10});
-    o.name = chance.first();
-    o.type = chance.pickone(['dog', 'cat', 'horse']);
-    o.breed = animaltype(o.type);
+    o.type = chance.pickone(['Cold cups', 'Tumblers', 'Mugs', 'Water bottles']);
+    o.name = animaltype(o.type);
     o.description = chance.sentence();
     o.img = `https://via.placeholder.com/${num()}x${num()}/${hex()}/fff/?text=${o.name}`;
     o.date_create = getdate(Date.parse('2020/01/01'),Date.now());
