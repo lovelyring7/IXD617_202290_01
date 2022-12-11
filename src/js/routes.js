@@ -1,6 +1,6 @@
 import { query } from "./functions.js"
 import { makeMap, makeMarkers } from "./maps.js";
-import { makeAnimalList, makeAnimalMapDescription, makeAnimalProfileDescription, makeUserProfilePage } from "./parts.js";
+import { makeAllAnimalList, makeAnimalBasicInfo, makeAnimalList, makeAnimalProfileDescription, makeEditAnimalForm, makeEditUserForm, makeMyAnimalBasicInfo, makeMyItemList, makeUserProfilePage } from "./parts.js";
 
 
 export const RecentPage = async() => {
@@ -9,6 +9,17 @@ export const RecentPage = async() => {
         params:[sessionStorage.userId] 
     });
     console.log(animal_locations);
+    
+
+    let {result:animals} = await query({
+        type:"animals_by_user_id",
+        params:[sessionStorage.userId]
+    });
+
+    console.log(animals)
+
+    $("#recent-page .productlist").html(makeAllAnimalList(animals))
+
 
     let valid_animals = animal_locations.reduce((r,o) => {
         o.icon = o.img;
@@ -43,10 +54,27 @@ export const RecentPage = async() => {
     });
 }
 
-export const ListPage = async() => {
+/* maybe wrong from here or the next steps.
+
+export const RecentPageList = async() => {
 
     let {result:animals} = await query({
         type:"animals_by_user_id",
+        params:[sessionStorage.userId]
+    });
+
+    console.log(animals)
+
+    $("#recent-page .productlist").html(makeAnimalList(animals))
+
+}
+
+*/
+
+export const ListPage = async() => {
+
+    let {result:animals} = await query({
+        type:"favorite_animals_by_user_id",
         params:[sessionStorage.userId]
     });
 
@@ -69,16 +97,32 @@ export const UserProfilePage = async() => {
     $("#user-profile-page .body").html(makeUserProfilePage(user))
 }
 
+
+export const MyItemList = async() => {
+
+    let {result:animals} = await query({
+        type:"animals_by_user_id",
+        params:[sessionStorage.userId]
+    });
+
+    console.log(animals)
+
+    $("#my-item-list .body2").html(makeMyItemList(animals))
+
+}
+
+
+
+
 export const AnimalProfilePage = async() => {
     let {result:animals} = await query({
-        type:"animal_by_id",
+        type:"favorite_animal_by_id",
         params:[sessionStorage.animalId]
     });
     let [animal] = animals;
 
-    $(".animal-profile-top").css({"background-image":`url(${animal.img})`})
-    $("#animal-profile-page h1").html(animal.name);
-    $("#animal-profile-page .section-description").html(makeAnimalProfileDescription(animal));
+    $("#animal-profile-page [data-role='main'] .animallist-item").html(makeAnimalBasicInfo(animal));
+    $("#animal-profile-page [data-role='main'] .animal-description").html(makeAnimalProfileDescription(animal));
 
     let {result:locations} = await query({
         type:"locations_by_animal_id",
@@ -86,9 +130,23 @@ export const AnimalProfilePage = async() => {
     });
     console.log(locations)
 
-    let map_el = await makeMap("#animal-profile-page .map");
+    let map_el = await makeMap("#animal-profile-page .animal-locations>div");
     makeMarkers(map_el,locations);
 }
+
+export const MyAnimalProfilePage = async() => {
+    let {result:animals} = await query({
+        type:"animal_by_id",
+        params:[sessionStorage.animalId]
+    });
+    let [animal] = animals;
+
+    $("#my-animal-profile-page [data-role='main'] .animallist-item").html(makeMyAnimalBasicInfo(animal));
+    $("#my-animal-profile-page [data-role='main'] .animal-description").html(makeAnimalProfileDescription(animal));
+
+
+}
+
 
 export const ChooseLocationPage = async() => {
     let map_el = await makeMap("#choose-location-page .map");
@@ -102,5 +160,20 @@ export const UserEditPage = async() => {
     });
     let [user] = users;
 
-    $("#user-profile-page .body").html(makeUserProfilePage(user))
+    $("#user-edit-page .body").html(makeEditUserForm(user))
+}
+
+
+
+export const AnimalEditPage = async() => {
+    let {result:animals} = await query({
+        type:"animal_by_id",
+        params:[sessionStorage.animalId]
+    });
+    let [animal] = animals;
+
+    $("#animal-edit-page .body").html(makeEditAnimalForm({
+        animal,
+        namespace:'animal-edit'
+        }));
 }
