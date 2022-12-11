@@ -15,6 +15,7 @@
     --color-main-dark2: #4b4b4b;
     --color-main-dark3: #555;
     --color-main-dark4: #ABABAB;
+    --color-main-dark5: #333;
     --color-main-light1: #f2f2f2;
     --color-main-light2: #e1e1e1;
 
@@ -44,7 +45,7 @@ a {
 
 h1,h2,h3,h4{
     font-family: var(--font-header);
-    font-weight: 400;
+    font-weight: 500;
     margin:0;
 }
 
@@ -93,6 +94,11 @@ h4{
     z-index:1;
 }
 
+.subpage [data-role="main"],
+#animal-profile-page [data-role="main"] {
+    padding-top:0;
+}
+
 .main-header{
     padding:0 20px;
 }
@@ -108,7 +114,50 @@ h4{
 
 
 
-[data-role="header"],
+
+[data-role="header"]{
+    line-height: var(--header-height);
+    height: var(--header-height);
+    position: relative;
+    overflow:hidden;
+    background-color:white;
+}
+
+[data-role="header"] li{
+    display: flex;
+}
+
+[data-role="header"] ul{
+    margin-left:20px;
+    margin-right: 20px;
+}
+
+[data-role="header"] li:first-of-type img{
+    vertical-align: sub;;
+}
+
+[data-role="header"] h3{
+     margin:0 auto;
+}
+
+[data-role="header"] li:last-of-type{
+    opacity: 0;
+}
+
+#my-item-list [data-role="header"] li:last-of-type,
+#my-animal-profile-page [data-role="header"] li:last-of-type{
+    opacity:1;
+}
+
+#my-item-list [data-role="header"] li:last-of-type>img{
+    vertical-align: text-bottom;
+    width:100%;
+}
+
+#my-animal-profile-page [data-role="header"] li:last-of-type>a>img{
+    width:73%;
+}
+
 [data-role="footer"]{
     line-height: var(--header-height);
     height: var(--header-height);
@@ -130,9 +179,12 @@ h4{
 [data-role="header"] ul,
 [data-role="footer"] ul { 
     list-style-type:none;
-    margin:0;
     padding:0;
     display:flex;
+}
+
+[data-role="footer"] ul{
+    margin:0;
 }
 
 [data-role="footer"] li{
@@ -140,9 +192,7 @@ h4{
     text-align: center;
 }
 
-[data-role="header"] li {
-    flex:none;
-}
+
 
 
 
@@ -167,9 +217,8 @@ h4{
 .overscroll{ overflow:auto;}
 
 
-.padded{
-    padding:1em;
-}
+.padded{padding:1em;}
+.full { height: 100%;}
 
 
 /* FORMS */
@@ -178,7 +227,7 @@ h4{
 }
 .form-label{
     font-size:0.8em;
-    color:var(--color-main-white);
+    color:var(--color-main-dark1);
     display: block;
     margin-bottom:0.5em;
 }
@@ -209,6 +258,21 @@ h4{
 
 .form-button:hover{
     text-decoration: none;
+}
+
+.select{
+    padding:8px;
+    border-radius: 8px;
+    background-color: var(--color-main-light1);
+    display: inline;
+}
+
+#list-add-modal .modal-body h3{
+    line-height: 41px;;
+}
+
+#list-add-modal .modal-body .select img{
+    vertical-align: sub;
 }
 
 
@@ -246,10 +310,13 @@ h4{
 
 /* floater */
 
-.floater { position:absolute;}
+.floater { 
+    position:absolute;
+    display: none;
+}
 .floater.top { top:1rem;}
 .floater.right { right:1rem;}
-.floater.bottom { bottom:1rem;}
+.floater.bottom{ bottom:1rem;}
 .floater.left { left:1rem;}
 
 .btn-circle{
@@ -355,6 +422,10 @@ h4{
 .modal-foot{
     background-color:white;
     padding:0.5em 20px;
+}
+
+.modal-foot{
+    display: none;
 }
 
 .modal-head{
@@ -480,9 +551,21 @@ h4{
     color:var(--color-main-dark4);
 }
 
+
+#animal-profile-page a[href="#list-page"] .footer-label{
+    color:var(--color-green-light);
+}
+
+#animal-profile-page a[href="#recent-page"] .footer-label,
+#animal-profile-page a[href="#user-profile-page"] .footer-label{
+    color:var(--color-main-dark4);
+}
+
+
 #user-profile-page a[href="#user-profile-page"] .footer-label{
     color:var(--color-green-light);
 }
+
 
 #user-profile-page a[href="#recent-page"] .footer-label,
 #user-profile-page a[href="#list-page"] .footer-label{
@@ -490,13 +573,49 @@ h4{
 }
 
 
+#user-edit-page a[href="#user-profile-page"] .footer-label{
+    color:var(--color-green-light);
+}
+
+#user-edit-page a[href="#recent-page"] .footer-label,
+#user-edit-page a[href="#list-page"] .footer-label{
+    color:var(--color-main-dark4);
+}
+
+
+#my-item-list a[href="#user-profile-page"] .footer-label{
+    color:var(--color-green-light);
+}
+
+#my-item-list a[href="#recent-page"] .footer-label,
+#my-item-list a[href="#list-page"] .footer-label{
+    color:var(--color-main-dark4);
+}
+
+
+#my-animal-profile-page a[href="#user-profile-page"] .footer-label{
+    color:var(--color-green-light);
+}
+
+#my-animal-profile-page a[href="#recent-page"] .footer-label,
+#my-animal-profile-page a[href="#list-page"] .footer-label{
+    color:var(--color-main-dark4);
+}
+
+
+#animal-edit-page a[href="#user-profile-page"] .footer-label{
+    color:var(--color-green-light);
+}
+
+#animal-edit-page a[href="#recent-page"] .footer-label,
+#animal-edit-page a[href="#list-page"] .footer-label{
+    color:var(--color-main-dark4);
+}
 
 
 .animallist-item {
-    height: 121px;
     display: flex;
     /*box-shadow: 0 3px 5px rgb(0 0 0 / 20%); */
-    padding: 24px 0;
     /*border-radius: 1em; */
     overflow: hidden;
     font-weight: normal;
@@ -506,21 +625,109 @@ h4{
 }
 
 
-.animallist-item img{
-    width: 121px;
+#list-page .animallist-item,
+#my-item-list .animallist-item,
+#animal-profile-page .animallist-item,
+#my-animal-profile-page .animallist-item{
     height: 121px;
+    padding: 24px 0;
+}
+
+
+.animallist-item img{
     object-fit: cover;
     vertical-align: text-bottom;
     border-radius: 3px;
 }
 
-.animallist-body{
+#list-page .animallist-item img,
+#my-item-list .animallist-item img,
+#animal-profile-page .animallist-item-image img,
+#my-animal-profile-page .animallist-item-image img{
+    width: 121px;
+    height: 121px;
+}
+
+
+
+#list-page .animallist-item .animallist-body,
+#my-item-list .animallist-item .animallist-body{
     padding:32px 16px;
+}
+
+#my-item-list .animallist-item:last-of-type{
+    border-bottom:0;
+}
+
+#animal-profile-page .body2 .animallist-body,
+#my-animal-profile-page .body2 .animallist-body{
+    padding:8px 16px;
+    position: relative;
+}
+
+#animal-profile-page .body2 .animallist-body>button{
+    border:1px solid var(--color-green-lighter);
+    padding: 8px 16px;
+    border-radius: 8px;
+    position:absolute;
+    bottom:0;
+    color:var(--color-green-lighter);
+    font-size:12px;
+    background-color: white;
+    font-family: var(--font-body);
+
+    
+}
+
+
+
+#my-animal-profile-page .animallist-date{
+    position:absolute;
+    bottom:0;
+    font-size:12px;
+}
+
+#animal-profile-page a,
+#my-animal-profile-page a{
+    font-weight: 400;
+}
+
+#animal-profile-page .animal-details,
+#my-animal-profile-page .animal-details{
+    padding-top:24px;
+    color:var(--color-main-dark3);
+}
+
+#animal-profile-page .animal-description,
+#my-animal-profile-page .animal-description{
+    margin-bottom:40px;
+}
+
+#animal-profile-page [data-role="header"] li:first-of-type img,
+#my-animal-profile-page [data-role="header"] li:first-of-type img{
+    vertical-align: text-bottom;
 }
 
 .animallist-name{
     font-size:  16px;
+    overflow: hidden;
     white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#animal-profile-page .animal-locations>div{
+    height: 228px;
+    border-radius: 3px;
+    margin-top:16px;
+}
+#animal-profile-page .animal-locations>h4{
+    color:var(--color-main-dark2);
+}
+
+#animal-profile-page .body2 .animallist-name,
+#my-animal-profile-page .body2 .animallist-name{
+    white-space: initial;
+    line-height: 20px;
 }
 
 .animallist-type{
@@ -528,7 +735,8 @@ h4{
     margin-top: 8px;
 }
 
-#animal-profile-page [data-role="main"]{
+#animal-profile-page [data-role="main"],
+#my-animal-profile-page [data-role="main"]{
     display: flex;
     flex-direction: column; 
 }
@@ -597,19 +805,31 @@ h4{
 
 
 .user-profile-image img{
-    width:100%;
+    width: 78px;
+    display: block;
     object-fit: cover;
     aspect-ratio: 1/ 1;
-    border-radius:  50%;
-    padding:4em;
+    border-radius: 50%;
+    margin: 0 auto;
 }
 
 .user-profile-body {
-    padding:2em;
+    padding:16px;
+    text-align: center;
+}
+
+.user-profile-item-number{
+    color:var(--color-main-dark5);
+}
+
+.user-profile-item-number>span{
+    color:var(--color-green-lighter);
 }
 
 .user-profile-name {
-    font-weight: 1.5em ;
+    font-size:25px;
+    font-weight: 400;
+    padding-bottom:8px;
 }
 
 .icon {
@@ -617,6 +837,62 @@ h4{
     width: 1em;
     height: 1em;
 }
+
+
+[data-role="main"] .body2{
+    padding:40px 20px;
+    color:var(--color-main-dark1);
+    letter-spacing: 1px;
+}
+
+#animal-profile-page [data-role="main"] .body2,
+#my-animal-profile-page [data-role="main"],
+#my-animal-profile-page [data-role="main"] .body2{
+    padding-top:0;
+}
+
+
+.sub-menus-sec1{
+    padding-top:20px;
+    padding-bottom:20px;
+}
+
+.sub-menus-sec1:first-of-type{
+    padding-top:0;
+}
+
+.sub-menus-sec1>h4{
+    padding-bottom: 8px;
+}
+
+
+.sub-menus-sec2{
+    padding-top:8px;
+    padding-bottom:8px;
+}
+
+#user-profile-page .body2{
+    overflow: auto;
+}
+
+#my-item-list .body2{
+    overflow: auto;
+    height: 700px;
+    padding-top:16px;
+}
+
+
+.body2 li{
+    list-style: none;
+    padding-top:52px;
+    text-decoration: underline;
+    color:var(--color-main-dark2);
+}
+
+.body2 a {
+    font-weight: 400;
+}
+
 
 .settings {
     list-style-type: none;
@@ -630,4 +906,70 @@ h4{
 
 .settings li~li {
     border-top: 1px solid var(--color-neutral-lighter);
+}
+
+
+.productlist{
+    width:100%;
+    margin-top:24px;
+}
+
+.productlist>a{
+    grid-column: span 6;
+}
+
+.productlist .animallist-item-image{
+    width: 100%;
+    display: block;
+    
+}
+
+.productlist .animallist2-item-image img{
+    width:100%;
+    aspect-ratio: 1/1;
+}
+
+
+.productlist .animallist2-item:nth-of-type(2n+1){
+    margin-right:8px;
+}
+
+.productlist .animallist-item:nth-of-type(2n){
+    margin-left:8px;
+}
+
+
+.productlist .animallist-item {
+    display: block;
+    padding-bottom: 16px;
+    overflow: hidden;
+    font-weight: normal;
+    color:inherit;
+    box-sizing: content-box;
+    border:0;
+    width: 100%;
+}
+
+
+.productlist .animallist-item img{
+    width: 100%;
+    object-fit: cover;
+    vertical-align: text-bottom;
+    border-radius: 3px;
+    aspect-ratio: 1 / 1;
+}
+
+.productlist .animallist-body{
+    padding:0;
+    padding-top:8px;
+}
+
+.productlist .animallist-name{
+    font-size:  16px;
+    white-space: nowrap;
+}
+
+.productlist .animallist-type{
+    color: var(--color-main-dark2);
+    margin-top: 8px;
 }
