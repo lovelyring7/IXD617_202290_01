@@ -52,13 +52,21 @@ function makeStatement($data){
         case "user_by_id":
             return makeQuery($conn, "SELECT `id`,`name`,`email`,`username`,`img`,`date_create` FROM `track_202290_users` WHERE `id`=?", $params);
         case "animal_by_id":
-            return makeQuery($conn, "SELECT * FROM `track_202290_animals` WHERE `id`=?", $params);        
+            return makeQuery($conn, "SELECT * FROM `track_202290_animals` WHERE `id`=?", $params); 
+        case "favorite_animal_by_id":
+                return makeQuery($conn, "SELECT * FROM `track_202290_animals_favorite` WHERE `id`=?", $params);          
         case "location_by_id":
             return makeQuery($conn, "SELECT * FROM `track_202290_locations` WHERE `id`=?", $params);
 
+            /*
+        case "products_all":
+             return makeQuery($conn, "SELECT * FROM `track_202290_animals`", $params);
+*/
 
         case "animals_by_user_id":
                 return makeQuery($conn, "SELECT * FROM `track_202290_animals` WHERE `user_id`=?", $params);
+        case "favorite_animals_by_user_id":
+            return makeQuery($conn, "SELECT * FROM `track_202290_animals_favorite` WHERE `user_id`=?", $params);
         case "locations_by_animal_id":
                 return makeQuery($conn, "SELECT * FROM `track_202290_locations` WHERE `animal_id`=?", $params);
 
@@ -72,7 +80,18 @@ function makeStatement($data){
             ON a.id = l.animal_id
             WHERE `user_id` =?
             ", $params);
+
+        case "favorite_animal_locations_by_user_id":
+            return makeQuery($conn, "SELECT * 
+            FROM `track_202290_animals_favorite` a
+            JOIN (
+                SELECT * FROM `track_202290_locations`
+            ) l
+            ON a.id = l.animal_id
+            WHERE `user_id` =?
+            ", $params);
         
+
 
         case "recent_animal_locations":
             return makeQuery($conn, "SELECT * 
@@ -92,7 +111,67 @@ function makeStatement($data){
             WHERE `user_id` =?
             ORDER BY l.animal_id, l.date_create DESC
             ", $params);
+
+
+        case "favorite_recent_animal_locations":
+            return makeQuery($conn, "SELECT * 
+            FROM `track_202290_animals_favorite` a
+            JOIN (
+                SELECT lg.* 
+                FROM `track_202290_locations` lg
+                WHERE lg.id = (
+                    SELECT lt.id 
+                    FROM `track_202290_locations` lt
+                    WHERE lt.animal_id = lg.animal_id
+                    ORDER BY lt.date_create DESC
+                    LIMIT 1
+                )
+            ) l
+            ON a.id = l.animal_id
+            WHERE `user_id` =?
+            ORDER BY l.animal_id, l.date_create DESC
+            ", $params);
+
+        case "my_recent_animal_locations":
+            return makeQuery($conn, "SELECT * 
+            FROM `track_202290_animals` a
+            JOIN (
+                SELECT lg.* 
+                FROM `track_202290_locations` lg
+                WHERE lg.id = (
+                    SELECT lt.id 
+                    FROM `track_202290_locations` lt
+                    WHERE lt.animal_id = lg.animal_id
+                    ORDER BY lt.date_create DESC
+                    LIMIT 1
+                )
+            ) l
+            ON a.id = l.animal_id
+            WHERE `user_id` =?
+            ORDER BY l.animal_id, l.date_create DESC
+            ", $params);
         
+        
+        /* INSERT */
+        
+
+        /* UPDATE */
+        case "update_animal":
+            $result = makeQuery($conn,"UPDATE
+            `track_202290_animals_favorite`
+            SET
+                `type` = ?,
+                `name` = ?,
+                `description` = ?
+            WHERE `id` = ?
+            ",$params,false);
+
+            if(isset($result['error'])) return $result;
+            return ["result"=>"Success"];
+       
+         /* DELETE */
+
+
 
 
         case "check_signin";
