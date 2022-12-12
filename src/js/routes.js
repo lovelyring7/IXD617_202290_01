@@ -12,7 +12,7 @@ export const RecentPage = async() => {
     
 
     let {result:animals} = await query({
-        type:"animals_by_user_id",
+        type:"all_animals",
         params:[sessionStorage.userId]
     });
 
@@ -98,6 +98,9 @@ export const UserProfilePage = async() => {
 }
 
 
+
+
+
 export const MyItemList = async() => {
 
     let {result:animals} = await query({
@@ -160,8 +163,24 @@ export const UserEditPage = async() => {
     });
     let [user] = users;
 
-    $("#user-edit-page .body").html(makeEditUserForm(user))
+    $("#user-edit-page .body").html(makeEditUserForm(user));
 }
+
+
+
+
+
+export const AnimalAddPage = async() => {
+    $("#animal-add-page .body").html(makeEditAnimalForm({
+        animal:{
+            type:'',
+            name:'',
+            description:'',
+        },
+        namespace:'animal-add'
+    }));
+}
+
 
 
 
@@ -175,5 +194,5 @@ export const AnimalEditPage = async() => {
     $("#animal-edit-page .body").html(makeEditAnimalForm({
         animal,
         namespace:'animal-edit'
-        }));
+    }));
 }

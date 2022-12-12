@@ -1,5 +1,5 @@
-import { checkAnimalEditForm, checkUserEditForm } from "./forms.js";
-import { AnimalEditPage, AnimalProfilePage, ChooseLocationPage, ListPage, MyAnimalProfilePage, MyItemList, RecentPage, UserEditPage, UserProfilePage } from "./routes.js";
+import { checkAnimalAddForm, checkAnimalDeleteForm, checkAnimalEditForm, checkPasswordEditForm, checkSignupForm, checkUserEditForm } from "./forms.js";
+import { AnimalAddPage, AnimalEditPage, AnimalProfilePage, ChooseLocationPage, ListPage, MyAnimalProfilePage, MyItemList, RecentPage, UserEditPage, UserProfilePage } from "./routes.js";
 import { checkSigninForm, checkUserId } from "./signin.js";
 
 
@@ -31,7 +31,10 @@ $(() => {
             case "user-edit-page" : UserEditPage();
             break;
 
+
             case "choose-location-page": ChooseLocationPage();
+            break;
+            case "location-edit-page": ChooseLocationPage();
             break;
 
             case "my-item-list" : MyItemList();
@@ -43,6 +46,9 @@ $(() => {
             break;
             case "animal-edit-page" : AnimalEditPage();
             break;
+            case "animal-add-page" : AnimalAddPage();
+            break;
+
         }
     })
 
@@ -54,7 +60,6 @@ $(() => {
     })
 
     .on("submit", "#signup-form", function(e) {
-        console.log("signup", e)
         e.preventDefault();
         checkSignupForm();
     })
@@ -70,7 +75,6 @@ $(() => {
         e.preventDefault();
         checkAnimalEditForm();
     })
-
 
 
 
@@ -93,14 +97,29 @@ $(() => {
         sessionStorage.locationId = id;
     })
 
+    .on("click", ".js-animal-delete", function(e){
+        checkAnimalDeleteForm();
+    })
+
+
+
  
     .on("click", ".js-submit-user-edit-form", function(e){
         checkUserEditForm();
     })
 
+    .on("click", ".js-submit-password-edit-form", function(e){
+        checkPasswordEditForm(); 
+    })
+
+    .on("click", ".js-submit-animal-add-form", function(e){
+        checkAnimalAddForm();
+    })
+
     .on("click", ".js-submit-animal-edit-form", function(e){
         checkAnimalEditForm();
     })
+
 
     .on("click", ".nav-link", function(e){
         if (e.cancelable) e.preventDefault();

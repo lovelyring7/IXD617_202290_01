@@ -93,18 +93,19 @@ export const makeAnimalMapDescription = ({type,name,img}) => {
 
 
 export const makeEditUserForm =({name,username,email}) => {
-    return  `<div class="form-control">
-    <lable class="form-label" for="user-edit-username">Username</lable>
-    <input class="form-input" type="text" id="user-edit-username" data-role="none" placeholder="Type your Username" value="${username}">
-</div>
-<div class="form-control">
-    <lable class="form-label" for="user-edit-name">Name</lable>
-    <input class="form-input" type="text" id=user-editn-name" data-role="none" placeholder="Type your Name" value="${name}">
-</div>
-<div class="form-control">
-    <lable class="form-label" for="user-edit-email">Email</lable>
-    <input class="form-input" type="text" id="user-edit-email" data-role="none" placeholder="Type your email" value="${email}">
-</div>`
+    
+    return `<div class="form-control">
+        <label class="form-label" for="user-edit-username">Username</label>
+        <input class="form-input" type="text" id="user-edit-username" data-role="none" placeholder="Type your Username" value="${username}">
+    </div>
+    <div class="form-control">
+        <label class="form-label" for="user-edit-name">Name</label>
+        <input class="form-input" type="text" id="user-edit-name" data-role="none" placeholder="Type your Name" value="${name}">
+    </div>
+    <div class="form-control">
+        <label class="form-label" for="user-edit-email">Email</label>
+        <input class="form-input" type="text" id="user-edit-email" data-role="none" placeholder="Type your Email" value="${email}">
+    </div>`
 }
 
 
