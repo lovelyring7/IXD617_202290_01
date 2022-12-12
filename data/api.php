@@ -63,6 +63,9 @@ function makeStatement($data){
              return makeQuery($conn, "SELECT * FROM `track_202290_animals`", $params);
 */
 
+        case "all_animals":
+            return makeQuery($conn, "SELECT * FROM `track_202290_animals` ORDER BY rand()", $params);
+
         case "animals_by_user_id":
                 return makeQuery($conn, "SELECT * FROM `track_202290_animals` WHERE `user_id`=?", $params);
         case "favorite_animals_by_user_id":
@@ -150,27 +153,129 @@ function makeStatement($data){
             WHERE `user_id` =?
             ORDER BY l.animal_id, l.date_create DESC
             ", $params);
-        
+
+
+
         
         /* INSERT */
+
+        case "insert_user":
+            $result = makeQuery($conn, "SELECT `id` 
+            FROM `track_202290_users` 
+            WHERE `username`=? OR `email`=?
+            ", [$params[0],$params[1]]);
+            if (count($result['result']) > 0)
+                return ["error"=>"Username or Email already exists"];
+
+
+            $result = makeQuery($conn, "INSERT INTO
+            `track_202290_users`
+            (
+                `username`,
+                `email`,
+                `password`,
+                `img`,
+                `date_create`
+            )
+            VALUES
+            (
+                ?,
+                ?,
+                md5(?),
+                'https://via.placeholder.com/400/?text=USER',
+                NOW()
+            )
+            ", $params,false);
+
+            if(isset($result['error'])) return $result;
+            return ["id" => $conn->lastInsertId()];
+
+        case "insert_animal":
+            $result = makeQuery($conn, "INSERT INTO
+            `track_202290_animals`
+            (
+                `user_id`,
+                `type`,
+                `name`,
+                `description`,
+                `img`,
+                `date_create`
+            )
+            VALUES
+            (
+                ?,
+                ?,
+                ?,
+                ?,
+                'https://via.placeholder.com/400/?text=ANIMAL',
+                NOW()
+            )
+            ", $params,false);
+
+            if(isset($result['error'])) return $result;
+            return ["result"=>"Success"];
         
 
         /* UPDATE */
+
+
+        case "update_user":
+            $result = makeQuery($conn, "UPDATE
+            `track_202290_users`
+            SET
+                `name` = ?,
+                `username` = ?,
+                `email` = ?
+            WHERE `id` = ?
+            ", $params,false);
+
+            if(isset($result['error'])) return $result;
+            return ["result"=>"Success"];
+
+            case "update_password":
+                $result = makeQuery($conn, "UPDATE
+                `track_202290_users`
+                SET
+                    `password` = md5(?)
+                WHERE `id` = ?
+                ", $params,false);
+    
+                if(isset($result['error'])) return $result;
+                return ["result"=>"Success"];
+
         case "update_animal":
-            $result = makeQuery($conn,"UPDATE
-            `track_202290_animals_favorite`
+            $result = makeQuery($conn, "UPDATE
+            `track_202290_animals`
             SET
                 `type` = ?,
                 `name` = ?,
                 `description` = ?
             WHERE `id` = ?
-            ",$params,false);
+            ", $params,false);
 
             if(isset($result['error'])) return $result;
             return ["result"=>"Success"];
+
        
          /* DELETE */
 
+         case "delete_animal":
+            $result = makeQuery($conn, "DELETE FROM
+            `track_202290_animals`
+            WHERE `id` = ?
+            ", $params,false);
+
+            if(isset($result['error'])) return $result;
+            return ["result"=>"Success"];
+
+        case "delete_location":
+                $result = makeQuery($conn, "DELETE FROM
+                `track_202290_locations`
+                WHERE `id` = ?
+                ", $params,false);
+
+                if(isset($result['error'])) return $result;
+                return ["result"=>"Success"];
 
 
 
