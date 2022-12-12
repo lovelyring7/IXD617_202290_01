@@ -115,6 +115,16 @@ h4{
 
 
 
+
+
+/* SIGN UP */
+
+#signin-page{
+    background-color:var(--color-green-light);
+}
+
+
+
 [data-role="header"]{
     line-height: var(--header-height);
     height: var(--header-height);
@@ -832,6 +842,9 @@ h4{
     padding-bottom:8px;
 }
 
+
+
+
 .icon {
     font-weight: 1em;
     width: 1em;
@@ -874,6 +887,13 @@ h4{
 #user-profile-page .body2{
     overflow: auto;
 }
+
+#user-profile-page a[href="#password-edit-page"] .sub-menus-sec2{
+    padding-top:16px;
+}
+
+
+
 
 #my-item-list .body2{
     overflow: auto;
